@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -17,6 +18,7 @@ import com.google.android.gms.tasks.Task;
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private LatLng location;
+    final int DEFAULT_ZOOM = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +47,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         // and move the map's camera to the same location.
         googleMap.addMarker(new MarkerOptions().position(location)
                 .title("Location"));
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(location));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
+                new LatLng(location.latitude,
+                        location.longitude), DEFAULT_ZOOM));
     }
 
 }
